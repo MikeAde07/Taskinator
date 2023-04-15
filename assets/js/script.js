@@ -243,6 +243,29 @@ var saveTasks = function () {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
+var loadTasks = function () {
+    var savedTasks = localStorage.getItem("tasks");
+    
+
+    if(!savedTasks) {
+        return false;
+    } 
+    
+    savedTasks = JSON.parse(savedTasks);
+    console.log(savedTasks);
+    
+    // loop through savedTasks array
+    for(var i = 0; i < savedTasks.length; i++) {
+        // pass each task object into the `createTaskEl()` funciton
+        createTaskEl(savedTasks[i]);
+    }
+    
+
+    
+}
+
+loadTasks();
+
 pageContentEl.addEventListener("click", taskButtonHandler);
 formEl.addEventListener("submit", taskFormHandler);
 pageContentEl.addEventListener("change", taskStatusChangeHandler);
